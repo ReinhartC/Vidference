@@ -12,7 +12,8 @@
 	          <p></p>
 	          <input type="password" class="form-control" placeholder="Room Password" name="room_password">
 	          <p></p>
-	          <select class="select form-control" name="room_slot">
+	          <select class="select form-control" name="room_slot" required="">
+			  	<option value="">-- Choose room stream slots --</option>
 			  	<option value="4">4</option>
 			  	<option value="5">5</option>
 			  	<option value="6">6</option>
