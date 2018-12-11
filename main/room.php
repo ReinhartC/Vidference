@@ -34,14 +34,14 @@
               echo " <i class='fa fa-lock'></i>";
           ?>
         </h4>
-        <i>Created by <?php echo "$row_roomdetails[room_owner]"; ?></i><br>	
+        <i>Created by <strong><?php echo "$row_roomdetails[room_owner]"; ?></strong></i><br>	
       </div>
       <div class="alert alert-info alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <i class="icon fa fa-info"></i> &nbsp;Choose one of the empty stream space below to join the teleconference in this room
       </div>
 
-      <div class="row">
+      
       		
 	      	<!-- STREAMS -->
 	      	<?php
@@ -53,7 +53,7 @@
             include "modals/join-room-modal.php";
             include "modals/room-password-modal.php"; 
 	      	?>
-
+      </div>
     
     </section>
     <!-- /.CONTENT -->

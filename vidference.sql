@@ -49,7 +49,7 @@ CREATE TABLE `room` (
 
 /*Data for the table `room` */
 
-insert  into `room`(`room_name`,`room_owner`,`room_type`,`room_password`,`room_slot`) values ('Room 1','ReinhartC','Public',NULL,4),('Room 2','Ojosh','Public',NULL,8),('Room 3','Rio','Private','ab56b4d92b40713acc5af89985d4b786',5),('Room 4','Ijad','Private','ab56b4d92b40713acc5af89985d4b786',6);
+insert  into `room`(`room_name`,`room_owner`,`room_type`,`room_password`,`room_slot`) values ('Chitchat','ReinhartC','Public',NULL,4),('Game discussion','Ojosh','Public',NULL,8),('Sales meeting','Rio','Private','ab56b4d92b40713acc5af89985d4b786',5),('Zeta clan','Ijad','Private','ab56b4d92b40713acc5af89985d4b786',6);
 
 /*Table structure for table `stream` */
 
@@ -70,7 +70,7 @@ CREATE TABLE `stream` (
 
 /*Data for the table `stream` */
 
-insert  into `stream`(`stream_id`,`stream_room`,`stream_owner`,`stream_space`,`stream_start_time`) values (85,'Room 1','ReinhartC',1,'2018-12-11 07:54:39'),(86,'Room 1','Rizky',2,'2018-12-11 07:54:52'),(87,'Room 2','Yoga',1,'2018-12-11 07:55:29'),(88,'Room 3','Rio',1,'2018-12-11 07:56:32'),(89,'Room 3','Ijad',2,'2018-12-11 07:56:49'),(90,'Room 4','Fatur',1,'2018-12-11 07:57:23'),(91,'Room 4','Ojosh',2,'2018-12-11 07:57:36');
+insert  into `stream`(`stream_id`,`stream_room`,`stream_owner`,`stream_space`,`stream_start_time`) values (85,'Chitchat','ReinhartC',1,'2018-12-11 07:54:39'),(86,'Chitchat','Rizky',2,'2018-12-11 07:54:52'),(87,'Game discussion','Yoga',1,'2018-12-11 07:55:29'),(88,'Sales meeting','Rio',1,'2018-12-11 07:56:32'),(89,'Sales meeting','Ijad',2,'2018-12-11 07:56:49'),(90,'Zeta clan','Fatur',1,'2018-12-11 07:57:23'),(91,'Zeta clan','Ojosh',2,'2018-12-11 07:57:36');
 
 /* Procedure structure for procedure `account_details` */
 
@@ -296,6 +296,7 @@ BEGIN
 		SELECT
 		    `stream`.`stream_id`,
 		    `stream`.`stream_owner`,
+		    `stream`.`stream_start_time`,
 		    `account`.`user_stream_link`
 		FROM
 		    `vidference`.`stream`, `vidference`.`account`
