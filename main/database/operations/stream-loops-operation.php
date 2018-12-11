@@ -41,7 +41,7 @@
 	    		</div>
 	    	</div>
 	    ";
-	    if($strm%2==0) echo "</div>";
+	    if($strm%2==0||$strm==$row_roomdetails['room_slot']) echo "</div>";
     	$strm++;
 	}
 ?>
