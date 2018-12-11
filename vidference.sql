@@ -25,13 +25,12 @@ CREATE TABLE `account` (
   `user_password` varchar(64) NOT NULL,
   `user_stream_link` varchar(64) NOT NULL,
   `user_join_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `user_streaming` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `account` */
 
-insert  into `account`(`user_name`,`user_password`,`user_stream_link`,`user_join_date`,`user_streaming`) values ('Dominator','cfca2bf1c37f75f8280d996650e58684','https://www.youtube.com/embed/LsBrT6vbQa8','2018-12-11 06:37:34',1),('Yeetinat0r','ab56b4d92b40713acc5af89985d4b786','https://www.youtube.com/embed/hHW1oY26kxQ','2018-12-11 06:43:13',1);
+insert  into `account`(`user_name`,`user_password`,`user_stream_link`,`user_join_date`) values ('Dominator','cfca2bf1c37f75f8280d996650e58684','https://www.youtube.com/embed/LsBrT6vbQa8','2018-12-11 07:19:52'),('Yeetinat0r','ab56b4d92b40713acc5af89985d4b786','https://www.youtube.com/embed/hHW1oY26kxQ','2018-12-11 07:19:57');
 
 /*Table structure for table `room` */
 
@@ -50,7 +49,7 @@ CREATE TABLE `room` (
 
 /*Data for the table `room` */
 
-insert  into `room`(`room_name`,`room_owner`,`room_type`,`room_password`,`room_slot`) values ('abc','Yeetinat0r','Public',NULL,5),('abcdefg','Yeetinat0r','Private','900150983cd24fb0d6963f7d28e17f72',7),('acdbe','Yeetinat0r','Public',NULL,7),('efghi','Dominator','Private','47bce5c74f589f4867dbd57e9ca9f808',8),('zeta','Yeetinat0r','Private','e26026b73cdc3b59012c318ba26b5518',4);
+insert  into `room`(`room_name`,`room_owner`,`room_type`,`room_password`,`room_slot`) values ('a','Yeetinat0r','Public',NULL,4),('abcdefg','Yeetinat0r','Private','900150983cd24fb0d6963f7d28e17f72',7),('abcdfg','Yeetinat0r','Public',NULL,8),('efghi','Dominator','Private','47bce5c74f589f4867dbd57e9ca9f808',8),('zeta','Yeetinat0r','Private','e26026b73cdc3b59012c318ba26b5518',4);
 
 /*Table structure for table `stream` */
 
@@ -67,11 +66,9 @@ CREATE TABLE `stream` (
   KEY `stream_room_fk` (`stream_room`),
   CONSTRAINT `stream_owner_fk` FOREIGN KEY (`stream_owner`) REFERENCES `account` (`user_name`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `stream_room_fk` FOREIGN KEY (`stream_room`) REFERENCES `room` (`room_name`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=latin1;
 
 /*Data for the table `stream` */
-
-insert  into `stream`(`stream_id`,`stream_room`,`stream_owner`,`stream_space`,`stream_start_time`) values (75,'abc','Dominator',1,'2018-12-11 06:37:34'),(76,'abc','Yeetinat0r',2,'2018-12-11 06:43:13');
 
 /* Procedure structure for procedure `account_details` */
 
@@ -160,7 +157,6 @@ DELIMITER $$
 
 /*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `end_stream`(`p_id` INT, `p_owner` varchar(64))
 BEGIN
-		UPDATE account SET user_streaming=0 WHERE user_name=p_owner;
 		delete from stream where `stream_id`=`p_id`;
 		SELECT 0, 'Ended stream';
     END */$$
@@ -282,7 +278,6 @@ DELIMITER $$
 )
 BEGIN
 		INSERT INTO stream (stream_room, stream_owner, stream_space, stream_start_time) VALUES(p_room, p_owner, p_space, NOW());
-		update account set user_streaming=1 where user_name=p_owner;
 		SELECT 0, 'Entered stream';
     END */$$
 DELIMITER ;
@@ -319,15 +314,7 @@ DELIMITER $$
 
 /*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `user_stream_check`(`p_name` VARCHAR(64))
 BEGIN
-	IF EXISTS (SELECT 1 FROM account WHERE `user_name`=p_name) THEN 
-		SELECT
-		    `user_streaming`
-		FROM
-		    `vidference`.`account`
-		WHERE `user_name`=p_name;
-	ELSE
-		SELECT NULL AS Result;
-	END IF;
+	SELECT COUNT(stream_owner) as streaming FROM stream WHERE stream_owner=`p_name`;
     END */$$
 DELIMITER ;
 
