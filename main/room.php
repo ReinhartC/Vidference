@@ -1,4 +1,7 @@
-<?php include "database/verify.php"; ?>
+<?php 
+  include "database/verify.php"; 
+  include "database/operations/check-streaming-operation.php";
+?>
 <!DOCTYPE html>
 <html>
 
@@ -42,12 +45,13 @@
       		
 	      	<!-- STREAMS -->
 	      	<?php
-	      		include "modals/join-room-modal.php";
-            include "modals/room-password-modal.php"; 
 	      		include "database/operations/close-button-operation.php";
 	      		include "database/operations/start-stream-operation.php";
 		        include "database/operations/end-stream-operation.php";
 		        include "database/operations/stream-loops-operation.php";
+            
+            include "modals/join-room-modal.php";
+            include "modals/room-password-modal.php"; 
 	      	?>
 
     
