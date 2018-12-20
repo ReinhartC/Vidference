@@ -16,6 +16,13 @@
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 	      </div>
 	    </form>
+	    <form role="form" action="#" method="post">
+	      <div class="modal-footer">
+	    	<input type="hidden" name="room_name" value="">
+	    	<i>Wanted to join the room? You could &nbsp;</i>
+	       	<button class="btn btn-sm btn-warning" type="submit" name="requestpassword" id="requestpassword" value="">Request Password</button>
+	      </div>
+	    </form>
 	  </div>
 	</div>
 </div>

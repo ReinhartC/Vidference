@@ -26,4 +26,24 @@
 	    var roomname = $(e.relatedTarget).data('roomname');
 	    $(e.currentTarget).find('input[name="room_name"]').val(roomname);
 	});
+	$('#request-password-waiting-modal').on('show.bs.modal', function(e) {
+	    var requestroom = $(e.relatedTarget).data('requestroom');
+	    $(e.currentTarget).find('input[name="room_name"]').val(requestroom);
+	});
+	$('#request-password-accepted-modal').on('show.bs.modal', function(e) {
+	    var requestroom = $(e.relatedTarget).data('requestroom');
+	    $(e.currentTarget).find('input[name="room_name"]').val(requestroom);
+	});
+	$('#request-password-accepted-modal').on('show.bs.modal', function(e) {
+	    var roompassword = $(e.relatedTarget).data('roompassword');
+	    $(e.currentTarget).find('input[name="room_password"]').val(roompassword);
+	});
+	$('#request-password-declined-modal').on('show.bs.modal', function(e) {
+	    var requestroom = $(e.relatedTarget).data('requestroom');
+	    $(e.currentTarget).find('input[name="room_name"]').val(requestroom);
+	});
+	$('#mod-request-details-modal').on('show.bs.modal', function(e) {
+	    var requestuser = $(e.relatedTarget).data('requestuser');
+	    $(e.currentTarget).find('input[name="request_user"]').val(requestuser);
+	});
 </script>

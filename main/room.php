@@ -45,13 +45,15 @@
       		
 	      	<!-- STREAMS -->
 	      	<?php
-	      		include "database/operations/close-button-operation.php";
+	      		include "database/operations/buttons-operation.php";
 	      		include "database/operations/start-stream-operation.php";
 		        include "database/operations/end-stream-operation.php";
 		        include "database/operations/stream-loops-operation.php";
             
             include "modals/join-room-modal.php";
             include "modals/room-password-modal.php"; 
+            include "modals/mod-request-modal.php";
+            include "modals/mod-request-details-modal.php";
 	      	?>
       </div>
     

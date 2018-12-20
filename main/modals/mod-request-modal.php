@@ -1,18 +1,17 @@
-<div class="modal fade" id="join-room-modal">
+<div class="modal fade" id="mod-request-modal">
 	<div class="modal-dialog">
 	  <div class="modal-content">
 	    <div class="modal-header">
-	      <h4 class="modal-title">Join an existing room</h4>
+	      <h4 class="modal-title">Password requests</h4>
 	    </div>
 	    <form role="form" action="#" method="post">
 	      <div class="modal-body">
 	        <div class="form-group has-feedback">
 	          <!--ROOM LIST LOOP-->
+	          <!--<i>You have not requested any room's password</i>-->
 	          <?php 
-	          	include "database/operations/join-room-operation.php"; 
-	          	include "database/operations/request-password-operation.php"; 
-	          	include "database/operations/join-private-operation.php"; 
-	          	include "database/operations/room-list-operation.php"; 
+	          	include "database/operations/mod-request-response-operation.php"; 
+	          	include "database/operations/mod-request-list-operation.php"; 
 	          ?>
 	        </div>
 	      </div>

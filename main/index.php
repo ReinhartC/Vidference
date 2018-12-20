@@ -1,5 +1,6 @@
 <?php 
   include "database/verify.php";   
+  include "database/operations/check-streaming-operation.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,7 +36,7 @@
         <p>A video stream teleconference platform</p><br>
       </div>      
 
-      <div class="col-sm-6">
+      <div class="col-sm-4">
         <div class="box">
           <div class="box-body text-center">
             <h4>Join an existing teleconference room</h4>
@@ -45,7 +46,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-4">
         <div class="box">
           <div class="box-body text-center">
             <h4>Create a teleconference room</h4>
@@ -55,11 +56,25 @@
           </div>
         </div>
       </div>
+      <div class="col-sm-4">
+        <div class="box">
+          <div class="box-body text-center">
+            <h4>Your room password requests</h4>
+            <a class="btn btn-app" data-toggle="modal" data-target="#request-password-modal">
+              <i class="fa fa-key"></i> Request
+            </a>
+          </div>
+        </div>
+      </div>
 
       <?php 
         include "modals/join-room-modal.php";
         include "modals/create-room-modal.php"; 
+        include "modals/request-password-modal.php";
         include "modals/room-password-modal.php"; 
+        include "modals/request-password-waiting-modal.php"; 
+        include "modals/request-password-accepted-modal.php";
+        include "modals/request-password-declined-modal.php";
       ?>
 
       
