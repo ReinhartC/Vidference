@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `account`;
 
 CREATE TABLE `account` (
   `user_name` varchar(64) NOT NULL,
-  `user_password` varchar(256) NOT NULL,
+  `user_password` varchar(64) NOT NULL,
   `user_stream_link` varchar(64) NOT NULL,
   `user_join_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_name`)
@@ -30,7 +30,7 @@ CREATE TABLE `account` (
 
 /*Data for the table `account` */
 
-insert  into `account`(`user_name`,`user_password`,`user_stream_link`,`user_join_date`) values ('Fatur','6162636465','https://www.youtube.com/embed/2atQnvunGCo','2018-12-19 03:16:27'),('Ijad','6162636465','https://www.youtube.com/embed/2ccaHpy5Ewo','2018-12-19 03:16:27'),('Ojosh','6162636465','https://www.youtube.com/embed/v8bcIWgdCP4','2018-12-20 23:49:10'),('ReinhartC','6162636465','https://www.youtube.com/embed/hHW1oY26kxQ','2018-12-19 03:16:28'),('Rio','6162636465','https://www.youtube.com/embed/gmv54pfxk0Q','2018-12-19 03:16:29'),('Rizky','6162636465','https://www.youtube.com/embed/Ec7VUcdB-ww','2018-12-20 23:50:13'),('Yoga','6162636465','https://www.youtube.com/embed/6MyrAUxtWyA','2018-12-20 23:49:43');
+insert  into `account`(`user_name`,`user_password`,`user_stream_link`,`user_join_date`) values ('Fatur','ab56b4d92b40713acc5af89985d4b786','https://www.youtube.com/embed/2atQnvunGCo','2018-12-21 03:14:49'),('Ijad','ab56b4d92b40713acc5af89985d4b786','https://www.youtube.com/embed/2ccaHpy5Ewo','2018-12-21 03:14:50'),('Ojosh','ab56b4d92b40713acc5af89985d4b786','https://www.youtube.com/embed/v8bcIWgdCP4','2018-12-21 03:16:36'),('ReinhartC','ab56b4d92b40713acc5af89985d4b786','https://www.youtube.com/embed/hHW1oY26kxQ','2018-12-21 03:14:51'),('Rio','ab56b4d92b40713acc5af89985d4b786','https://www.youtube.com/embed/gmv54pfxk0Q','2018-12-21 03:14:51'),('Rizky','ab56b4d92b40713acc5af89985d4b786','https://www.youtube.com/embed/Ec7VUcdB-ww','2018-12-21 03:14:52'),('Yoga','ab56b4d92b40713acc5af89985d4b786','https://www.youtube.com/embed/6MyrAUxtWyA','2018-12-21 03:14:56');
 
 /*Table structure for table `password_request` */
 
@@ -256,7 +256,7 @@ DELIMITER $$
 )
 BEGIN
 	IF EXISTS(SELECT 1 FROM account WHERE user_name = p_name COLLATE latin1_general_cs) THEN
-		IF EXISTS(SELECT 2 FROM account WHERE hex(p_password) = user_password AND user_name = p_name COLLATE latin1_general_cs) THEN			
+		IF EXISTS(SELECT 2 FROM account WHERE md5(p_password) = user_password AND user_name = p_name COLLATE latin1_general_cs) THEN			
 			SELECT 0,'Login Successful';
 		ELSE
 			SELECT -2,'Wrong Password';
@@ -321,7 +321,7 @@ DELIMITER $$
 )
 BEGIN
 	IF NOT EXISTS(SELECT 1 FROM account WHERE user_name = p_name) THEN
-		INSERT INTO account (user_name, user_password, user_stream_link, user_join_date) VALUES(p_name, hex(p_password), p_stream_link, NOW());
+		INSERT INTO account (user_name, user_password, user_stream_link, user_join_date) VALUES(p_name, md5(p_password), p_stream_link, NOW());
 		SELECT 0, 'Registration successful';
 	ELSE
 		SELECT -1, 'Username already exist';

@@ -7,7 +7,7 @@
 	    <form role="form" action="#" method="post">
 	      <div class="modal-body">
 	        <div class="form-group has-feedback">
-	          <p>The room password is:</p>
+	          <p>The room's password is:</p>
 	          <input type="text" class="form-control"  name="room_password" value="" readonly="">
 	          <input type="hidden" name="room_name" value="">
 	        </div>

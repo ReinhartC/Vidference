@@ -8,7 +8,6 @@
 	      <div class="modal-body">
 	        <div class="form-group has-feedback">
 	          <!--ROOM LIST LOOP-->
-	          <!--<i>You have not requested any room's password</i>-->
 	          <?php 
 	          	include "database/operations/close-request-operation.php"; 
 	          	include "database/operations/request-password-list-operation.php"; 

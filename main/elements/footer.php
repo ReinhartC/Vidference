@@ -1,3 +1,3 @@
 <footer class="main-footer">
-    2018 <strong>Multimedia Computing</strong> Group 5
+    <i><strong>2018</strong> &bull; Multimedia Computing <strong>Group 5</strong> &bull; &copy; <strong>Yeetinator</strong></i>
 </footer>
