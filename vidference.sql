@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `account`;
 
 CREATE TABLE `account` (
   `user_name` varchar(64) NOT NULL,
-  `user_password` varchar(64) NOT NULL,
+  `user_password` char(32) NOT NULL,
   `user_stream_link` varchar(64) NOT NULL,
   `user_join_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_name`)
@@ -252,7 +252,7 @@ DELIMITER $$
 
 /*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `login`(
 	`p_name` VARCHAR(64), 
-	`p_password` VARCHAR(256)
+	`p_password` char (32)
 )
 BEGIN
 	IF EXISTS(SELECT 1 FROM account WHERE user_name = p_name COLLATE latin1_general_cs) THEN
@@ -316,7 +316,7 @@ DELIMITER $$
 
 /*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `register`(
 	`p_name` VARCHAR (64),
-	`p_password` VARCHAR (256),
+	`p_password` char (32),
 	`p_stream_link` VARCHAR (64)
 )
 BEGIN
